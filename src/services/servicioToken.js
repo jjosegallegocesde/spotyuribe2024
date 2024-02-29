@@ -22,8 +22,33 @@ fetch(url,peticion)
     return respuesta.json()
 })//Todo ok
 .then(function(respuesta){
-    console.log(respuesta)
+    let token=respuesta.token_type+" "+respuesta.access_token
+    let urlCanciones="https://api.spotify.com/v1/artists/2ye2Wgw4gimLv2eAKyk1NB/top-tracks?market=US"
+
+    let peticionCanciones={
+        method:"GET",
+        headers:{
+            Authorization:token
+        }
+    }
+
+    fetch(urlCanciones,peticionCanciones)
+    .then(function(respuesta){
+        return respuesta.json()
+    })
+    .then(function(respuesta){
+        console.log(respuesta)
+    })
+    .catch(function(respuesta){
+        console.log(respuesta)
+    })
+
+    
+
 })//Todo ok
 .catch(function(respuesta){
     console.log(respuesta)
 })//Fallaste
+
+
+
