@@ -23,7 +23,7 @@ fetch(url,peticion)
 })//Todo ok
 .then(function(respuesta){
     let token=respuesta.token_type+" "+respuesta.access_token
-    let urlCanciones="https://api.spotify.com/v1/artists/2ye2Wgw4gimLv2eAKyk1NB/top-tracks?market=US"
+    let urlCanciones="https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb/top-tracks?market=US"
 
     let peticionCanciones={
         method:"GET",
@@ -37,7 +37,19 @@ fetch(url,peticion)
         return respuesta.json()
     })
     .then(function(respuesta){
-        console.log(respuesta)
+        console.log(respuesta.tracks[0].name)
+        console.log(respuesta.tracks[0].preview_url)
+        console.log(respuesta.tracks[0].album.images[0].url)
+
+        let titulo1=document.getElementById("titulo1")
+        titulo1.textContent=respuesta.tracks[0].name
+
+        let imagen1=document.getElementById("imagen1")
+        imagen1.src=respuesta.tracks[0].album.images[0].url
+
+        let audio1=document.getElementById("audio1")
+        audio1.src=respuesta.tracks[0].preview_url
+
     })
     .catch(function(respuesta){
         console.log(respuesta)
